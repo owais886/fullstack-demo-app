@@ -7,7 +7,7 @@ pipeline {
                 docker { image 'maven:3.8.1-adoptopenjdk-11' }
             }
             steps {
-                dir('my-fullstack-app/backend') {
+                dir('backend') {
                     sh 'mvn clean package -DskipTests'
                 }
                 archiveArtifacts artifacts: 'backend/target/*.jar', fingerprint: true
@@ -19,7 +19,7 @@ pipeline {
                 docker { image 'node:16-alpine' }
             }
             steps {
-                dir('my-fullstack-app/frontend') {
+                dir('frontend') {
                     sh 'npm install'
                     sh 'npm run build'
                 }
