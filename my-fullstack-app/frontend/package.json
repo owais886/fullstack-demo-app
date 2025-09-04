@@ -1,0 +1,7 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "mkdir -p build && echo 'Hello from Node.js Frontend!' > build/index.html"
+  }
+}
