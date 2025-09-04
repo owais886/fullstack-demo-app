@@ -9,8 +9,9 @@ pipeline {
             steps {
                 dir('backend') {
                     sh 'mvn clean package -DskipTests'
+                    // Stash backend jar to make it available to later stages
+                    stash includes: 'target/*.jar', name: 'backend-jar'
                 }
-                archiveArtifacts artifacts: 'backend/target/*.jar', fingerprint: true
             }
         }
 
@@ -22,14 +23,19 @@ pipeline {
                 dir('frontend') {
                     sh 'npm install'
                     sh 'npm run build'
+                    // Stash frontend build folder
+                    stash includes: 'build/**', name: 'frontend-build'
                 }
-                archiveArtifacts artifacts: 'frontend/build/**', fingerprint: true
             }
         }
 
         stage('Integration (Dummy)') {
             agent any
             steps {
+                // Unstash backend and frontend files
+                dir('backend') { unstash 'backend-jar' }
+                dir('frontend') { unstash 'frontend-build' }
+
                 echo 'Backend and Frontend build artifacts are ready!'
                 sh 'ls -R backend/target frontend/build'
             }
