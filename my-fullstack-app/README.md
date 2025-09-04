@@ -6,7 +6,9 @@ This repository contains a simple **full-stack application**:
 - **Frontend:** Node.js application
 - **Purpose:** Demonstrate CI/CD pipelines using Jenkins with Docker agents
 
-## Features
+## CI/CD & DevOps Demonstration
+
+This project demonstrates CI/CD concepts using **Jenkins** with **Docker agents**:
 
 - Maven-based Java backend builds
 - Node.js frontend builds
@@ -19,7 +21,7 @@ The `Jenkinsfile` includes:
 
 1. **Backend stage:** Runs inside Maven+JDK Docker container, builds Java project, archives JAR
 2. **Frontend stage:** Runs inside Node.js Docker container, builds frontend, archives build artifacts
-3. **Integration stage:** Combines backend and frontend artifacts (dummy example for demonstration)
+3. **Integration stage:** Combines backend and frontend artifacts 
 
 ## How to run locally
 
